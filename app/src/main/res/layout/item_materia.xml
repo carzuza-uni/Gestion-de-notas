@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="10dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/linLayItemMateria"
+        android:gravity="center"
+        android:layout_weight="0.2">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtItemNombreMateria"
+            android:text="Nombre"
+            android:textSize="16dp"></TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtItemDescripcionMateria"
+            android:text="Descripción"
+            android:textSize="10dp"></TextView>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="230dp"
+        android:layout_height="45dp"
+        android:layout_weight="0.4"
+        android:id="@+id/btnEditarMateria"
+        android:padding="15dp"
+        android:background="@android:drawable/ic_menu_edit"></Button>
+    <Button
+        android:layout_width="230dp"
+        android:layout_height="45dp"
+        android:layout_weight="0.4"
+        android:id="@+id/btnEliminarMateria"
+        android:padding="15dp"
+        android:background="@android:drawable/ic_menu_delete"></Button>
+
+</LinearLayout>
