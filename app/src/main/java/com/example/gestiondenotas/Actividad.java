@@ -1,8 +1,13 @@
 package com.example.gestiondenotas;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.ArrayList;
+
 public class Actividad {
     int actividad_id, materia_id, corte, porcentaje;
     String nombre;
+    ArrayList<Nota> notas;
 
     public Actividad() {
     }
@@ -15,8 +20,25 @@ public class Actividad {
         this.nombre = nombre;
     }
 
+    public double calcularNotaActividades(){
+        double sumaNotas = 0;
+        for (Nota nota: this.getNotas()) {
+            sumaNotas += nota.getNota();
+        }
+        double notaFinal = sumaNotas * this.calcularPorcentaje();
+        return notaFinal;
+    }
+
+    public ArrayList<Nota> getNotas() {
+        return notas;
+    }
+
+    public void setNotas(ArrayList<Nota> notas) {
+        this.notas = notas;
+    }
+
     public double calcularPorcentaje(){
-        return porcentaje / 100;
+        return (porcentaje / 100d);
     }
 
     public int getActividad_id() {

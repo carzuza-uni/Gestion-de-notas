@@ -21,13 +21,15 @@ import java.util.ArrayList;
 public class AdaptadorActividad extends BaseAdapter {
     ArrayList<Actividad> listadoActividades;
     DaoActividad daoActividad;
+    DaoNota daoNota;
     Actividad actividad;
     Activity activity;
     int activity_id = 0, materia_id, corte;
 
-    public AdaptadorActividad(ArrayList<Actividad> listadoActividades, DaoActividad daoActividad, Activity activity) {
+    public AdaptadorActividad(ArrayList<Actividad> listadoActividades, DaoActividad daoActividad, DaoNota daoNota, Activity activity) {
         this.listadoActividades = listadoActividades;
         this.daoActividad = daoActividad;
+        this.daoNota = daoNota;
         this.activity = activity;
     }
 
@@ -80,13 +82,15 @@ public class AdaptadorActividad extends BaseAdapter {
             view = inflater.inflate(R.layout.item_materia, null);
         }
         actividad = listadoActividades.get(position);
+        actividad.setNotas(daoNota.listado(actividad.getActividad_id()));
         TextView nombre = (TextView) view.findViewById(R.id.txtItemNombreMateria);
         TextView porcentaje = (TextView) view.findViewById(R.id.txtItemDescripcionMateria);
         Button btnEditar = (Button) view.findViewById(R.id.btnEditarMateria);
         final Button btnEliminar = (Button) view.findViewById(R.id.btnEliminarMateria);
         LinearLayout linearLayout = (LinearLayout)view.findViewById(R.id.linLayItemMateria);
 
-        nombre.setText(actividad.getNombre());
+        String nombreText = actividad.getNombre() + " - ( "+ actividad.calcularNotaActividades() +" )";
+        nombre.setText(nombreText);
         porcentaje.setText(actividad.getPorcentaje() +"%");
         btnEditar.setTag(position);
         btnEliminar.setTag(position);

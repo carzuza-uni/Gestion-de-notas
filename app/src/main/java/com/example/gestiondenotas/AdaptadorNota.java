@@ -72,12 +72,13 @@ public class AdaptadorNota extends BaseAdapter {
         }
         nota = listadoNotas.get(position);
         final TextView nombre = (TextView) view.findViewById(R.id.txtItemNombreMateria);
-        //TextView porcentaje = (TextView) view.findViewById(R.id.txtItemDescripcionMateria);
+        TextView descripcion = (TextView) view.findViewById(R.id.txtItemDescripcionMateria);
         Button btnEditar = (Button) view.findViewById(R.id.btnEditarMateria);
         btnEditar.setVisibility(View.INVISIBLE);
         final Button btnEliminar = (Button) view.findViewById(R.id.btnEliminarMateria);
 
         nombre.setText(String.valueOf(nota.getNota()));
+        descripcion.setText("");
         btnEliminar.setTag(position);
 
         btnEliminar.setOnClickListener(new View.OnClickListener() {

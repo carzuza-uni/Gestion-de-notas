@@ -33,8 +33,14 @@ public class ActividadesActivity extends AppCompatActivity {
         this.setTitle(titulo);
 
         daoActividad = new DaoActividad(this);
+        DaoNota daoNota = new DaoNota(this);
         listaActividades = daoActividad.listado(materia_id, corte);
-        adaptadorActividad = new AdaptadorActividad(listaActividades, daoActividad, this);
+        ArrayList<Actividad> nuevaListaActividades = new ArrayList<Actividad>();
+        for (Actividad a: listaActividades) {
+            a.setNotas(daoNota.listado(a.getActividad_id()));
+            System.out.println("Nota: "+ a.calcularNotaActividades());
+        }
+        adaptadorActividad = new AdaptadorActividad(listaActividades, daoActividad, daoNota, this);
         ListView listView = (ListView) findViewById(R.id.listaActividades);
         listView.setAdapter(adaptadorActividad);
     }

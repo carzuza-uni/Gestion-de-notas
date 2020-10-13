@@ -17,10 +17,12 @@ public class DaoActividad {
     String nombreTabla = "actividad";
     String tabla = "CREATE TABLE IF NOT EXISTS "+ nombreTabla +" (actividad_id INTEGER PRIMARY KEY AUTOINCREMENT, materia_id INTEGER, corte INTEGER, porcentaje INTEGER, nombre TEXT)";
 
+    DaoNota daoNota;
     public DaoActividad(Context context) {
         this.context = context;
         this.database = context.openOrCreateDatabase(nombreBD, context.MODE_PRIVATE, null);
         this.database.execSQL(tabla);
+        daoNota = new DaoNota(context);
     }
 
     public boolean insertar(Actividad actividad){
@@ -38,8 +40,6 @@ public class DaoActividad {
 
     public boolean editar(Actividad actividad){
         ContentValues contentValues = new ContentValues();
-        //contentValues.put("materia_id", actividad.getMateria_id());
-        //contentValues.put("corte", actividad.getCorte());
         contentValues.put("porcentaje", actividad.getPorcentaje());
         contentValues.put("nombre", actividad.getNombre());
         return (database.update(nombreTabla, contentValues, "actividad_id="+ actividad.getActividad_id(), null)) > 0;
@@ -57,6 +57,7 @@ public class DaoActividad {
                 actividad.setCorte(cursor.getInt(2));
                 actividad.setPorcentaje(cursor.getInt(3));
                 actividad.setNombre(cursor.getString(4));
+                //actividad.setNotas(daoNota.listado(cursor.getInt(0)));
                 listaActividades.add(actividad);
             }while (cursor.moveToNext());
         }
