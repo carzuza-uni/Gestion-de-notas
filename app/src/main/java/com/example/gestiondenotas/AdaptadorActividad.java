@@ -95,14 +95,14 @@ public class AdaptadorActividad extends BaseAdapter {
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //vista interna que lleva a los cortes
-                /*int posicion = Integer.parseInt(v.getTag().toString());
+                //vista interna que lleva a las notas
+                int posicion = Integer.parseInt(v.getTag().toString());
                 actividad = listadoActividades.get(posicion);
-                Intent i = new Intent(activity.getApplicationContext(), CorteActivity.class);
+                Intent i = new Intent(activity.getApplicationContext(), NotasActivity.class);
                 i.putExtra("materia_id", actividad.getMateria_id());
                 i.putExtra("actividad_id", actividad.getActividad_id());
                 i.putExtra("nombre", actividad.getNombre());
-                activity.startActivity(i);*/
+                activity.startActivity(i);
             }
         });
 
@@ -143,6 +143,7 @@ public class AdaptadorActividad extends BaseAdapter {
                             daoActividad.editar(actividad);
                             listadoActividades = daoActividad.listado(getMateria_id(), getCorte());
                             notifyDataSetChanged();
+                            Toast.makeText(activity, "Actividad actualizada con éxito!", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                         }catch (Exception e){
                             Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show();
@@ -169,7 +170,7 @@ public class AdaptadorActividad extends BaseAdapter {
                 setCorte(actividad.getCorte());
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                builder.setMessage("¿Estas seguro de eliminar la materia?");
+                builder.setMessage("¿Estas seguro de eliminar la actividad?");
                 builder.setCancelable(false);
                 builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
                     @Override
@@ -177,6 +178,7 @@ public class AdaptadorActividad extends BaseAdapter {
                         daoActividad.eliminar(getActivity_id());
                         listadoActividades = daoActividad.listado(getMateria_id(), getCorte());
                         notifyDataSetChanged();
+                        Toast.makeText(activity, "Actividad eliminada con éxito!", Toast.LENGTH_SHORT).show();
                     }
                 });
                 builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {

@@ -29,6 +29,10 @@ public class DaoNota {
         return (database.insert(nombreTabla,null, contentValues)) > 0;
     }
 
+    public boolean eliminar(int nota_id){
+        return (database.delete(nombreTabla, "nota_id="+ nota_id, null)) > 0;
+    }
+
     public ArrayList<Nota> listado(int actividad_id){
         listaNotas.clear();
         Cursor cursor = database.rawQuery("SELECT * FROM "+ nombreTabla +" WHERE actividad_id = "+ actividad_id, null);

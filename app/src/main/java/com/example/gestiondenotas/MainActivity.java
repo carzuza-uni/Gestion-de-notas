@@ -31,18 +31,7 @@ public class MainActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.listaMaterias);
         Button btnAgregar = (Button)findViewById(R.id.btnAgregarMateria);
         listView.setAdapter(adaptadorMateria);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //vista interna que lleva a los cortes
-                /*Toast.makeText(getApplication(), "PRUEBA DE CLICK", Toast.LENGTH_SHORT).show();
-                materia = listaMaterias.get(position);
-                Intent i = new Intent(MainActivity.this, CorteActivity.class);
-                i.putExtra("materia_id", materia.getMateria_id());
-                i.putExtra("nombre", materia.getNombre());
-                startActivity(i);*/
-            }
-        });
+
         btnAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -122,6 +122,7 @@ public class AdaptadorMateria extends BaseAdapter {
                             daoMateria.editar(materia);
                             listadoMaterias = daoMateria.listado();
                             notifyDataSetChanged();
+                            Toast.makeText(activity, "Materia actualizada con éxito!", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                         }catch (Exception e){
                             Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show();
@@ -152,6 +153,7 @@ public class AdaptadorMateria extends BaseAdapter {
                         daoMateria.eliminar(getMateria_id());
                         listadoMaterias = daoMateria.listado();
                         notifyDataSetChanged();
+                        Toast.makeText(activity, "Materia eliminada con éxito!", Toast.LENGTH_SHORT).show();
                     }
                 });
                 builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
